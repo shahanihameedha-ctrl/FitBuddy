@@ -1,15 +1,13 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
-from fastapi.staticfiles import StaticFiles
-from routes import router
+from app.routes import router
 
-app = FastAPI(title="FitBuddy")
+app = FastAPI()
 
-#app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
-
-app.include_router(router)
+templates = Jinja2Templates(directory="app/templates")
 
 @app.get("/")
-def home(request: Request):
+async def home(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
+
+app.include_router(router)
