@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, Form
 from fastapi.templating import Jinja2Templates
-from app.ai.gemini_client import generate_fitness_plan
+from app.app.ai.gemini_client import generate_fitness_plan
 
 router = APIRouter()
 templates = Jinja2Templates(directory="templates")
