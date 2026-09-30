@@ -9,6 +9,7 @@ templates = Jinja2Templates(directory="templates")
 async def generate_plan(request: Request, goal: str = Form(...), age: int = Form(...)):
     plan = generate_fitness_plan(goal, age)
     return templates.TemplateResponse(
-        "result.html",
-        {"request": request, "plan": plan}
+        request=request, 
+        name="result.html", 
+        context={"plan": plan}
     )
