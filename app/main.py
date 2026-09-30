@@ -5,7 +5,7 @@ from routes import router
 
 app = FastAPI(title="FitBuddy")
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
+#app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 app.include_router(router)
