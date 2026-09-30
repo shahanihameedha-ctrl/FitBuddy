@@ -7,7 +7,8 @@ if api_key:
 
 def generate_fitness_plan(goal: str, age: int):
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        # gemini-pro பயன்படுத்துகிறோம்
+        model = genai.GenerativeModel('gemini-pro')
         prompt = f"Create a simple fitness plan for a {age} year old person with a goal of {goal}."
         response = model.generate_content(prompt)
         return response.text
