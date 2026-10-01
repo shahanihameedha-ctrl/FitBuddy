@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitBuddy - AI Workout Generator</title>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #121212; color: #fff; margin: 0; padding: 40px; display: flex; justify-content: center; }
+        .card { background: #1e1e1e; padding: 30px; border-radius: 12px; width: 100%; max-width: 500px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+        h1 { text-align: center; color: #ff4757; }
+        label { display: block; margin-top: 15px; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 10px; border-radius: 6px; background: #2c2c2c; color: #fff; border: 1px solid #444; box-sizing: border-box; }
+        button { width: 100%; margin-top: 20px; padding: 12px; background: #ff4757; border: none; color: white; font-weight: bold; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #e84118; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h1>FitBuddy AI</h1>
+    <form action="/generate-workout" method="post">
+        <label>Full Name:</label>
+        <input type="text" name="username" required>
+
+        <label>User ID:</label>
+        <input type="text" name="user_id" required>
+
+        <label>Age:</label>
+        <input type="number" name="age" required>
+
+        <label>Weight (kg):</label>
+        <input type="number" name="weight" required>
+
+        <label>Fitness Goal:</label>
+        <select name="goal">
+            <option value="Weight Loss">Weight Loss</option>
+            <option value="Muscle Gain">Muscle Gain</option>
+            <option value="General Wellness">General Wellness</option>
+            <option value="Flexibility">Flexibility</option>
+        </select>
+
+        <label>Intensity:</label>
+        <select name="intensity">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <button type="submit">Generate Plan</button>
+    </form>
+</div>
+</body>
+</html>
