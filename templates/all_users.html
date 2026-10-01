@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FitBuddy Dashboard - All Users</title>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: #fff; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #444; padding: 12px; text-align: left; vertical-align: top; }
+        th { background: #2c2c2c; }
+        pre { white-space: pre-wrap; max-height: 200px; overflow-y: auto; background: #1e1e1e; padding: 8px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h2>FitBuddy - Admin User Records</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Name / Age / Wt</th>
+                <th>Goal / Intensity</th>
+                <th>Original Plan</th>
+                <th>Updated Plan</th>
+                <th>Nutrition Tip</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <td>{{ u.user_id }}</td>
+                <td>{{ u.username }}<br>Age: {{ u.age }}<br>Wt: {{ u.weight }}kg</td>
+                <td>{{ u.goal }}<br>({{ u.intensity }})</td>
+                <td><pre>{{ u.original_plan }}</pre></td>
+                <td><pre>{{ u.updated_plan }}</pre></td>
+                <td>{{ u.nutrition_tip }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
