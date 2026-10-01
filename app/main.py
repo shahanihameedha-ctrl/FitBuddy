@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -6,7 +7,7 @@ from routes import router
 
 app = FastAPI()
 
-# 1. CORS Allow (GitHub Pages connect ஆக)
+# 1. CORS Allow
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -15,13 +16,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# 2. Static CSS files load ஆக
-app.mount("/static", StaticFiles(directory="static"), name="static")
+# 2. Static Folder Auto-detect & Fix
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+static_dir = os.path.join(BASE_DIR, "static") if os.path.exists(os.path.join(BASE_DIR, "static")) else os.path.join(BASE_DIR, "..", "static")
 
-templates = Jinja2Templates(directory="app/templates")
+if not os.path.exists(static_dir):
+    os.makedirs(static_dir, exist_ok=True)
 
-@app.get("/")
-async def home(request: Request):
-    return templates.TemplateResponse(request=request, name="index.html")
-
-app.include_router(router)
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
