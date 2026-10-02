@@ -1,0 +1,25 @@
+body{
+    background: linear-gradient(135deg,#8e7cc3,#6d5bd0);
+    font-family: Poppins,sans-serif;
+    display:flex;flex-direction:column;align-items:center;
+    min-height:100vh;margin:0;padding:20px;
+}
+.container{
+    background:white;width:100%;max-width:420px;
+    padding:25px;border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    margin-bottom:20px;
+}
+h1{ text-align:center; color:#5b3cc4; margin:0;}
+.sub{ text-align:center; color:gray; font-size:14px; margin-bottom:20px;}
+label{ font-weight:600; margin-top:10px; display:block;}
+input, select{
+    width:100%; padding:10px; margin:6px 0 12px 0;
+    border:1px solid #ddd; border-radius:8px; box-sizing:border-box;
+}
+button{
+    width:100%; padding:12px; background:linear-gradient(90deg,#7b5cff,#5b3cc4);
+    color:white; border:none; border-radius:10px; font-weight:bold; cursor:pointer;
+}
+.result{ white-space: pre-line; }
+#plan{ border-left:3px solid #7b5cff; padding-left:10px; }
