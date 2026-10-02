@@ -1,49 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Your Workout Plan - FitBuddy</title>
-    <style>
-        body { font-family: sans-serif; background: #121212; color: #fff; padding: 30px; }
-        .container { max-width: 800px; margin: 0 auto; background: #1e1e1e; padding: 25px; border-radius: 10px; }
-        pre { background: #2c2c2c; padding: 15px; border-radius: 8px; white-space: pre-wrap; color: #70a1ff; }
-        .tip { background: #2ed57322; border-left: 4px solid #2ed573; padding: 10px; margin: 15px 0; }
-        .success { color: #2ed573; font-weight: bold; }
-        textarea { width: 100%; height: 80px; background: #2c2c2c; color: white; border-radius: 6px; padding: 10px; box-sizing: border-box; }
-        button { padding: 10px 20px; background: #ff4757; border: none; color: white; border-radius: 6px; cursor: pointer; margin-top: 10px; }
-    </style>
-</head>
-<body>
-<div class="container">
-    <h2>Personalized Workout Details for {{ username }}</h2>
-    <p><strong>Goal:</strong> {{ goal }} | <strong>Intensity:</strong> {{ intensity }} | <strong>ID:</strong> {{ user_id }}</p>
-
-    {% if msg %}<p class="success">{{ msg }}</p>{% endif %}
-
-    <h3>7-Day Workout Plan</h3>
-    <pre>{{ workout_plan }}</pre>
-
-    {% if updated_plan %}
-    <h3 style="color: #ffa502;">Updated Workout Plan (Based on Feedback)</h3>
-    <pre style="border: 1px solid #ffa502;">{{ updated_plan }}</pre>
-    {% endif %}
-
-    <div class="tip">
-        <strong>Nutrition / Recovery Tip:</strong>
-        <p>{{ nutrition_tip }}</p>
+<div class="image-container" style="display: flex; gap: 20px; margin-top: 20px;">
+    <div>
+        <h3>Workout Inspiration</h3>
+        <img src="{{ workout_image }}" alt="Workout Image" style="width: 100%; max-width: 400px; border-radius: 10px;">
     </div>
-
-    <hr style="border-color: #333; margin: 30px 0;">
-
-    <h3>Request Plan Revisions</h3>
-    <form action="/submit-feedback" method="post">
-        <input type="hidden" name="user_id" value="{{ user_id }}">
-        <label>Feedback / Changes requested (e.g. "Add more cardio", "Include rest days"):</label><br><br>
-        <textarea name="feedback" required></textarea>
-        <button type="submit">Update Plan with AI</button>
-    </form>
-    <br>
-    <a href="/" style="color: #70a1ff;">← Back to Home</a>
+    <div>
+        <h3>Healthy Diet</h3>
+        <img src="{{ diet_image }}" alt="Diet Image" style="width: 100%; max-width: 400px; border-radius: 10px;">
+    </div>
 </div>
-</body>
-</html>
