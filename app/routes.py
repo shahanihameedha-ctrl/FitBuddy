@@ -1,16 +1,3 @@
-from fastapi import APIRouter, Request, Form, Depends
-from fastapi.templating import Jinja2Templates
-from sqlalchemy.orm import Session
-from app.database import get_db, FitnessPlan
-from app.gemini_generator import generate_fitness_plan
-
-router = APIRouter()
-templates = Jinja2Templates(directory="templates")
-
-@router.get("/")
-def home(request: Request):
-    return templates.TemplateResponse(request=request, name="index.html")
-
 @router.post("/generate-plan")
 def generate_plan(
     request: Request,
@@ -24,34 +11,22 @@ def generate_plan(
     fitness_level: str = Form(...),
     db: Session = Depends(get_db)
 ):
-    # Gemini API Call to generate plan
-    ai_plan = generate_fitness_plan(
-        name=name, age=age, gender=gender, weight=weight, 
-        height=height, goal=goal, dietary_preference=dietary_preference, 
-        fitness_level=fitness_level
+    plan_text = generate_fitness_plan(
+        name=name, age=age, gender=gender, weight=weight, height=height,
+        goal=goal, dietary_preference=dietary_preference, fitness_level=fitness_level
     )
 
-    # Save details to database
-    db_plan = FitnessPlan(
-        name=name, age=age, gender=gender, weight=weight,
-        height=height, goal=goal, dietary_preference=dietary_preference,
-        fitness_level=fitness_level, generated_plan=ai_plan
-    )
-    db.add(db_plan)
-    db.commit()
-    db.refresh(db_plan)
+    # Goal-க்கு ஏற்றவாறு படங்கள்
+    workout_image = "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800"
+    diet_image = "https://images.unsplash.com/photo-1498837167922-ddd27525d352?q=80&w=800"
 
     return templates.TemplateResponse(
-        request=request, 
-        name="result.html", 
-        context={"plan": ai_plan, "name": name}
-    )
-
-@router.get("/view-all-users")
-def view_all_users(request: Request, db: Session = Depends(get_db)):
-    users = db.query(FitnessPlan).all()
-    return templates.TemplateResponse(
-        request=request, 
-        name="all_users.html", 
-        context={"users": users}
+        request=request,
+        name="result.html",
+        context={
+            "plan": plan_text,
+            "name": name,
+            "workout_image": workout_image,
+            "diet_image": diet_image
+        }
     )
