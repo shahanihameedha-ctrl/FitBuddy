@@ -21,7 +21,7 @@ def generate_plan():
     goal = data.get("goal")
 
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-2.0-flash")
         prompt = f"Create diet plan, workout plan and tips for Age {age}, Weight {weight}kg, Goal {goal}. Give in short bullet points."
         response = model.generate_content(prompt)
         text = response.text
