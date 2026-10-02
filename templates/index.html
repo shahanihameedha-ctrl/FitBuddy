@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FitBuddy</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>FitBuddy 🏋️</h1>
+    <p class="sub">AI-powered Fitness Generator</p>
+    <label>Age:</label>
+    <input type="number" id="age" placeholder="Ex: 18">
+    <label>Weight (kg):</label>
+    <input type="number" id="weight" placeholder="Ex: 40">
+    <label>Goal:</label>
+    <select id="goal">
+        <option value="Weight Loss">Weight Loss</option>
+        <option value="Muscle Gain">Muscle Gain</option>
+        <option value="Stay Fit">Stay Fit</option>
+    </select>
+    <button onclick="generate()">Generate Plan 🚀</button>
+</div>
+<div class="container result" id="resultBox">
+    <h3>Your Plan 😊</h3>
+    <div id="plan"></div>
+</div>
+<script src="/static/script.js"></script>
+</body>
+</html>
